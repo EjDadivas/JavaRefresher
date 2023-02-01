@@ -1,0 +1,133 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch memorableQuotes",
+            "request": "launch",
+            "mainClass": "memorableQuotes.memorableQuotes",
+            "projectName": "JavaRefresher_934a3e50"
+        },
+        {
+            "type": "java",
+            "name": "Launch linkedList",
+            "request": "launch",
+            "mainClass": "linkedlist.linkedList",
+            "projectName": "JavaRefresher_934a3e50"
+        },
+        {
+            "type": "java",
+            "name": "Launch SimpleProductDatabase",
+            "request": "launch",
+            "mainClass": "multidimentional.SimpleProductDatabase",
+            "projectName": "JavaRefresher_934a3e50"
+        },
+        {
+            "type": "java",
+            "name": "Launch MultiArraySample",
+            "request": "launch",
+            "mainClass": "multidimentional.MultiArraySample",
+            "projectName": "JavaRefresher_934a3e50"
+        },
+        {
+            "type": "java",
+            "name": "Launch JavaDynamicArray",
+            "request": "launch",
+            "mainClass": "dynamicArray.JavaDynamicArray",
+            "projectName": "JavaRefresher_934a3e50"
+        },
+        {
+            "type": "java",
+            "name": "Launch JavaStaticArray",
+            "request": "launch",
+            "mainClass": "staticArray.JavaStaticArray",
+            "projectName": "JavaRefresher_934a3e50"
+        },
+        {
+            "type": "java",
+            "name": "Launch newBreakfastAct",
+            "request": "launch",
+            "mainClass": "breakfastactivity.newBreakfastAct",
+            "projectName": "JavaRefresher_934a3e50"
+        },
+        {
+            "type": "java",
+            "name": "Launch BreakfastActivity",
+            "request": "launch",
+            "mainClass": "breakfastactivity.BreakfastActivity",
+            "projectName": "JavaRefresher_934a3e50"
+        },
+        {
+            "type": "java",
+            "name": "Launch StringBufferx",
+            "request": "launch",
+            "mainClass": "stringconcatenation.StringBufferx",
+            "projectName": "JavaRefresher_934a3e50"
+        },
+        {
+            "type": "java",
+            "name": "Launch StringBuilderx",
+            "request": "launch",
+            "mainClass": "stringconcatenation.StringBuilderx",
+            "projectName": "JavaRefresher_934a3e50"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch FizzBuzz",
+            "request": "launch",
+            "mainClass": "FizzBuzz.FizzBuzz",
+            "projectName": "JavaRefresher_934a3e50"
+        },
+        {
+            "type": "java",
+            "name": "Launch JavaFunctions",
+            "request": "launch",
+            "mainClass": "JavaFunctions.JavaFunctions",
+            "projectName": "JavaRefresher_934a3e50"
+        },
+        {
+            "type": "java",
+            "name": "Launch EnhancedMyIfElseProgram",
+            "request": "launch",
+            "mainClass": "controlstructures.EnhancedMyIfElseProgram",
+            "projectName": "JavaRefresher_934a3e50"
+        },
+        {
+            "type": "java",
+            "name": "Launch ModifiedMyIfElseProgram",
+            "request": "launch",
+            "mainClass": "controlstructures.ModifiedMyIfElseProgram",
+            "projectName": "JavaRefresher_934a3e50"
+        },
+        {
+            "type": "java",
+            "name": "Launch MyIfElseProgram",
+            "request": "launch",
+            "mainClass": "controlstructures.MyIfElseProgram",
+            "projectName": "JavaRefresher_934a3e50"
+        },
+        {
+            "type": "java",
+            "name": "Launch Helloworld",
+            "request": "launch",
+            "mainClass": "helloworld.Helloworld",
+            "projectName": "JavaRefresher_934a3e50"
+        },
+        {
+            "type": "java",
+            "name": "Launch StringConcatenation",
+            "request": "launch",
+            "mainClass": "stringconcatenation.StringConcatenation",
+            "projectName": "JavaRefresher_934a3e50"
+        }
+    ]
+}
