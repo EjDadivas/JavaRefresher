@@ -6,8 +6,11 @@ import java.util.Scanner;
 public class newBreakfastAct {
 
     public static void main(String[] args) {
-        // String title = "Z";
-
+        Scanner sc = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("Please enter title:");
+        String parameter = sc.nextLine();
+        String title = "";
+        String description = "";
         String titleResults = "";
         String descriptionResults = "";
 
@@ -15,30 +18,11 @@ public class newBreakfastAct {
         int descriptionCount = 0;
 
         ArrayList<String>arrays = new ArrayList<String>();
+        arrays.add("Orange : Fruit");
+        arrays.add("Banana : Fruit");
+        arrays.add("Tomato : Vegetable");
+        arrays.add("Tomato : Soup");
 
-        arrays.add("F : A");
-        arrays.add("Z : F");
-        arrays.add("Z : C");
-        arrays.add("C : Z");
-
-        System.out.println("Display " + arrays);
-
-        Collections.sort(arrays);
-        System.out.println("Sort: " + arrays);
-
-        Collections.reverse(arrays);
-        System.out.println("Sort Des: " + arrays);
-        
-        System.out.println("Size: " + arrays.size());
-
-        Scanner titleInput = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("Please enter title:");
-        String title = titleInput.nextLine();
-        
-        Scanner descriptionInput = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("Please enter description:");
-        String description = descriptionInput.nextLine();
-        
         for(String i : arrays) {
             // System.out.println(i);
             String[] splitArr = i.split(" : ");
@@ -53,18 +37,52 @@ public class newBreakfastAct {
             }
             
         }
+        switch(parameter){
+            case "display":
+            System.out.println("Display " + arrays);
+            break;
 
-        if(titleCount != 0){
-            System.out.println(titleResults);
-        } else {
-            System.out.println("No title Found");
+            case "sort asc":
+            Collections.sort(arrays);
+            System.out.println("Sort: " + arrays);
+            break;
+
+            case "sort desc":
+            Collections.reverse(arrays);
+            System.out.println("Sort Des: " + arrays);
+            break;
+
+            case "count":
+            System.out.println("Size: " + arrays.size());
+            break;
+
+            case "keysearch":
+            title = sc.nextLine();
+            if(titleCount != 0){
+                System.out.println(titleResults);
+            } else {
+                System.out.println("No title Found");
+            }
+            break;
+
+            case "dsearch":
+            description = sc.nextLine();
+            System.out.println(""); 
+            if(descriptionCount != 0){
+                System.out.println(descriptionResults);
+            } else {
+                System.out.println("No description Found");
+            }
+            break;
         }
 
-        if(descriptionCount != 0){
-            System.out.println(descriptionResults);
-        } else {
-            System.out.println("No description Found");
-        }
+
+
+
+
+       
+
+       
       }
 
 }
