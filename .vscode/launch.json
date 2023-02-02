@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch test",
+            "request": "launch",
+            "mainClass": "memorableQuotes.test",
+            "projectName": "JavaRefresher_1d083727"
+        },
+        {
+            "type": "java",
+            "name": "Launch memorableQuotes",
+            "request": "launch",
+            "mainClass": "memorableQuotes.memorableQuotes",
+            "projectName": "JavaRefresher_1d083727"
+        },
+        {
+            "type": "java",
+            "name": "Launch newBreakfastAct",
+            "request": "launch",
+            "mainClass": "breakfastactivity.newBreakfastAct",
+            "projectName": "JavaRefresher_1d083727"
+        },
+        {
+            "type": "java",
             "name": "Launch memorableQuotes",
             "request": "launch",
             "mainClass": "memorableQuotes.memorableQuotes",
