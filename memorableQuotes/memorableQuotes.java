@@ -19,11 +19,13 @@ public class memorableQuotes {
     static Map<String, Integer> count = new HashMap<>();
     // 2. Adds quotes inside ArrayList 11. read files fromm a list
     static void createQuotes(ArrayList<String> quotes){
+        int u = 0;
         try {
 			List<String> allLines = Files.readAllLines(Paths.get("C:\\Users\\CL-1\\Desktop\\JavaRefresher\\JavaRefresher\\memorableQuotes\\quotes.txt"));
 
 			for (String line : allLines) {
-                quotes.add(line);
+                u++;
+                quotes.add(u + ". " + line);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -48,6 +50,7 @@ public class memorableQuotes {
         incrementCount(quote);
         String[] split = quote.split("@");
         System.out.println('"'+ split[0] +'"' + " (" + count.get(quote) + ")" + "\n -- " + split[1]);
+
     }
 
     // Searches for both reference and content
@@ -55,13 +58,14 @@ public class memorableQuotes {
         int count = 0;
         for(String i : quotes){
             String[] split = i.split("@");
+            
             // csearch command: gives content
             if(type == "content"){
                 if(split[0].contains(name)){
                     printQuote(i);
                     count++;
                 } 
-            }
+            }  
             // search command: gives author
             if(type == "name"){
                 if(split[1].contains(name)){
@@ -123,7 +127,8 @@ public class memorableQuotes {
     }
     // Database Management Function:
     // Add, Delete, Modify
-    // Add to file?
+    
+    // For database commands [add | modify | delete]
     static void database(ArrayList<String> quotes, String name){
         QuotesFormatter quoteFormatter = new QuotesFormatter();
         Scanner input = new Scanner(System.in);
@@ -136,10 +141,11 @@ public class memorableQuotes {
             String category = input.nextLine();
             String formatQuote = quoteFormatter.formattedQuotes(quote, author, category);
             add(quotes, formatQuote);
-        }else if("delete".equals(name)){
+        }else if("modify".equals(name)){
             // todo
         }else if("delete".equals(name)){
-            // todo
+            System.out.print("Quote: ");
+            int index = input.nextInt();
         }
     }
     // 
