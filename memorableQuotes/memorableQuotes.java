@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.io.FileWriter;
+import memorableQuotes.QuotesFormatter;
+
 
 public class memorableQuotes {
 
@@ -44,7 +47,7 @@ public class memorableQuotes {
     static void printQuote(String quote) {
         incrementCount(quote);
         String[] split = quote.split("@");
-        System.out.println(split[0] + " (" + count.get(quote) + ")" + "\n -- " + split[1]);
+        System.out.println('"'+ split[0] +'"' + " (" + count.get(quote) + ")" + "\n -- " + split[1]);
     }
 
     // Searches for both reference and content
@@ -52,16 +55,16 @@ public class memorableQuotes {
         int count = 0;
         for(String i : quotes){
             String[] split = i.split("@");
-            // search command: gives author
-            if(type == "name"){
-                if(split[1].contains(name)){
+            // csearch command: gives content
+            if(type == "content"){
+                if(split[0].contains(name)){
                     printQuote(i);
                     count++;
                 } 
             }
-            // csearch command: gives content
-            if(type == "content"){
-                if(split[0].contains(name)){
+            // search command: gives author
+            if(type == "name"){
+                if(split[1].contains(name)){
                     printQuote(i);
                     count++;
                 } 
@@ -109,30 +112,49 @@ public class memorableQuotes {
         }
     }
 
-    
+    static void add(ArrayList<String> quotes, String quote){
+        try {
+            FileWriter fw = new FileWriter("C:\\Users\\CL-1\\Desktop\\JavaRefresher\\JavaRefresher\\memorableQuotes\\quotes.txt", true);
+            fw.append("\n"+ quote);
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     // Database Management Function:
     // Add, Delete, Modify
     // Add to file?
     static void database(ArrayList<String> quotes, String name){
-        String[] split=name.split(" ");
-        for(String i : split){
-            String[] splitCommand = i.split("=");
-                if("add".equals(splitCommand[0])){
-                    add(splitCommand)
-                }
-            }
+        QuotesFormatter quoteFormatter = new QuotesFormatter();
+        Scanner input = new Scanner(System.in);
+        if("add".equals(name)){
+            System.out.print("Quote: ");
+            String quote = input.nextLine();
+            System.out.print("Author: ");
+            String author = input.nextLine();
+            System.out.print("Category: ");
+            String category = input.nextLine();
+            String formatQuote = quoteFormatter.formattedQuotes(quote, author, category);
+            add(quotes, formatQuote);
+        }else if("delete".equals(name)){
+            // todo
+        }else if("delete".equals(name)){
+            // todo
+        }
     }
+    // 
+
     // Main Program
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
         while(true){
+            Scanner sc = new Scanner(System.in);
             System.out.println("Choose: [all/random/search/csearch/display/category/db/quit/]");
             String parameter = sc.nextLine();
 
             ArrayList<String> memorable = new ArrayList<String>();
 
             createQuotes(memorable);
-            
+
                 if(memorable.size() != 0) {
                     if("all".equals(parameter)){
                         for(String i : memorable){
@@ -153,6 +175,9 @@ public class memorableQuotes {
                     }else if(parameter.startsWith("category ")){
                         String name = parameter.substring("category ".length());
                         searchQuote("category",memorable, name);
+                    }else if(parameter.startsWith("db ")){
+                        String name = parameter.substring("db ".length());
+                        database(memorable, name);
                     } else if("quit".equals(parameter)){
                         break;
                     }else{
