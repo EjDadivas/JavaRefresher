@@ -6,8 +6,9 @@ import java.util.Scanner;
 public class newBreakfastAct {
 
     public static void main(String[] args) {
+    while(true){
         Scanner sc = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("Please enter title:");
+        System.out.println("[display/sort asc/sort desc/count/keysearch/dsearch/quit]");
         String parameter = sc.nextLine();
         String title = "";
         String description = "";
@@ -37,52 +38,42 @@ public class newBreakfastAct {
             }
             
         }
-        switch(parameter){
-            case "display":
+        
+        if("display".equalsIgnoreCase(parameter)){
             System.out.println("Display " + arrays);
-            break;
-
-            case "sort asc":
+        } else if("sort asc".equalsIgnoreCase(parameter)){
             Collections.sort(arrays);
             System.out.println("Sort: " + arrays);
-            break;
-
-            case "sort desc":
+        } else if("sort desc".equalsIgnoreCase(parameter)){
             Collections.reverse(arrays);
             System.out.println("Sort Des: " + arrays);
-            break;
-
-            case "count":
+        } else if("count".equalsIgnoreCase(parameter)){
             System.out.println("Size: " + arrays.size());
-            break;
-
-            case "keysearch":
-            title = sc.nextLine();
+        } else if(parameter.startsWith("search ")){
+            title = parameter.substring("search ".length());
             if(titleCount != 0){
                 System.out.println(titleResults);
             } else {
                 System.out.println("No title Found");
             }
-            break;
-
-            case "dsearch":
-            description = sc.nextLine();
-            System.out.println(""); 
+        } else if(parameter.startsWith("dsearch ")){
+            description = parameter.substring("dsearch ".length());
             if(descriptionCount != 0){
                 System.out.println(descriptionResults);
             } else {
                 System.out.println("No description Found");
             }
+        } else if("quit".equalsIgnoreCase(parameter)){
             break;
+        } else {
+            System.out.println("Invalid Command!");
         }
-
-
-
+            
 
 
        
-
+        }
        
-      }
+    }
 
 }

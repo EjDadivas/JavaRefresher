@@ -6,21 +6,25 @@ import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import memorableQuotes.QuotesFormatter;
 
 
 public class memorableQuotes {
-
+    private static String fileName = "C:\\Users\\CL-1\\Desktop\\JavaRefresher\\JavaRefresher\\memorableQuotes\\quotes.txt";
     private static QuotesFormatter quoteFormatter = new QuotesFormatter();
     // 2. Adds quotes inside ArrayList 11. read files fromm a list
     public static void createQuotes(ArrayList<String> quotes){
         int u = 0;
         try {
-			List<String> allLines = Files.readAllLines(Paths.get("C:\\Users\\CL-1\\Desktop\\JavaRefresher\\JavaRefresher\\memorableQuotes\\quotes.txt"));
+			List<String> allLines = Files.readAllLines(Paths.get(fileName));
 
 			for (String line : allLines) {
                 u++;
@@ -40,9 +44,9 @@ public class memorableQuotes {
 
     // prints quotes in a new format
     public static void printQuote(String quote) {
-        // quoteFormatter.incrementCount(quote);
+        int counter = quoteFormatter.incrementCount(quote);
         String[] split = quote.split("@");
-        System.out.println('"'+ split[0] +'"' + " (" + split[3] + ")" + "\n -- " + split[1]);
+        System.out.println('"'+ split[0] +'"' + " (" + counter + ")" + "\n -- " + split[1]);
 
     }
 
@@ -111,7 +115,7 @@ public class memorableQuotes {
 
     public static void add(ArrayList<String> quotes, String quote){
         try {
-            FileWriter fw = new FileWriter("C:\\Users\\CL-1\\Desktop\\JavaRefresher\\JavaRefresher\\memorableQuotes\\quotes.txt", true);
+            FileWriter fw = new FileWriter(fileName, true);
             fw.append("\n"+ quote);
             fw.close();
         } catch (IOException e) {
@@ -119,27 +123,85 @@ public class memorableQuotes {
         }
     }
 
+    public static void deleteLine(ArrayList<String> quotes, int index) {
+        try {
+            List<String> allLines = Files.readAllLines(Paths.get(fileName));
+            allLines.remove(index - 1); // index starts from 1
+            Files.write(Paths.get(fileName), allLines);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void modify(ArrayList<String> quotes, int index, String newLine) {
+        try {
+            List<String> allLines = Files.readAllLines(Paths.get(fileName));
+            allLines.set(index-1, newLine);
+            System.out.println(allLines.get(index-1));
+            Files.write(Paths.get(fileName), allLines);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+    }
     // Database Management Function:
     // Add, Delete, Modify
     // For database commands [add | modify | delete]
     public static void database(ArrayList<String> quotes, String name){
         Scanner input = new Scanner(System.in);
+        
         if("add".equals(name)){
+
             System.out.print("Quote: ");
-            String quote = input.nextLine();
+            String newquote = input.nextLine();
+
             System.out.print("Author: ");
-            String author = input.nextLine();
+            String newauthor = input.nextLine();
+
             System.out.print("Category: ");
-            String category = input.nextLine();
-            String formatQuote = quoteFormatter.formattedQuotes(quote, author, category, 0);
+            String newcategory = input.nextLine();
+
+            String formatQuote = quoteFormatter.formattedQuotes(newquote, newauthor, newcategory, 0);
             add(quotes, formatQuote);
             System.out.println("Quote Added");
         }else if("modify".equals(name)){
-            // todo
-        }else if("delete".equals(name)){
-            System.out.print("Quote: ");
+            System.out.print("Enter the number: ");
             int index = input.nextInt();
+            input.nextLine();
+
+            System.out.print("Quote: ");
+            String quote = input.nextLine();
+
+            System.out.print("Author: ");
+            String author = input.nextLine();
+
+            System.out.print("Category: ");
+            String category = input.nextLine();
+
+
+            int counter = 0;
+
+
+
+            try {
+                List<String> allLines = Files.readAllLines(Paths.get(fileName));
+                String content = allLines.get(index - 1); // index starts from 1
+        
+                String[] split= content.split("@");
+                counter = Integer.parseInt(split[3]);
+                System.out.println(counter);
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                String formatQuote = quoteFormatter.formattedQuotes(quote, author, category, counter);
+                modify(quotes, index, formatQuote); 
+
+        }else if("delete".equals(name)){
+            System.out.print("Enter the index of the quote to delete: ");
+            int index = input.nextInt();
+            deleteLine(quotes, index);
+ 
         }
     }
 
