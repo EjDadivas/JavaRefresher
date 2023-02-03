@@ -15,10 +15,9 @@ import memorableQuotes.QuotesFormatter;
 
 public class memorableQuotes {
 
-    // for the quotes counter
-    static Map<String, Integer> count = new HashMap<>();
+    private static QuotesFormatter quoteFormatter = new QuotesFormatter();
     // 2. Adds quotes inside ArrayList 11. read files fromm a list
-    static void createQuotes(ArrayList<String> quotes){
+    public static void createQuotes(ArrayList<String> quotes){
         int u = 0;
         try {
 			List<String> allLines = Files.readAllLines(Paths.get("C:\\Users\\CL-1\\Desktop\\JavaRefresher\\JavaRefresher\\memorableQuotes\\quotes.txt"));
@@ -33,28 +32,22 @@ public class memorableQuotes {
 	}
    
     // 1. Generates Random quotes
-    static String getRandomQuote(ArrayList<String> quotes){    
+    public static String getRandomQuote(ArrayList<String> quotes){    
         Random ran = new Random();
         int n = ran.nextInt(quotes.size());
         return(quotes.get(n));
     }
-    //counts each time the quote is displayed
-    static void incrementCount(String quote) {
-        if (!count.containsKey(quote)) {
-            count.put(quote, 0);
-        }
-        count.put(quote, count.get(quote) + 1);
-    }
+
     // prints quotes in a new format
-    static void printQuote(String quote) {
-        incrementCount(quote);
+    public static void printQuote(String quote) {
+        // quoteFormatter.incrementCount(quote);
         String[] split = quote.split("@");
-        System.out.println('"'+ split[0] +'"' + " (" + count.get(quote) + ")" + "\n -- " + split[1]);
+        System.out.println('"'+ split[0] +'"' + " (" + split[3] + ")" + "\n -- " + split[1]);
 
     }
 
     // Searches for both reference and content
-    static void searchQuote(String type, ArrayList<String> quotes, String name){
+    public static void searchQuote(String type, ArrayList<String> quotes, String name){
         int count = 0;
         for(String i : quotes){
             String[] split = i.split("@");
@@ -89,7 +82,7 @@ public class memorableQuotes {
         }
     }
     // displays random quotes with delay and max quotes
-    static void displayRandomQuote(ArrayList<String> quotes, String name){
+    public static void displayRandomQuote(ArrayList<String> quotes, String name){
         int delay = 3000, max = 0, x = 0;
         // for additional commands after display
         String[] split=name.split(" ");
@@ -116,7 +109,7 @@ public class memorableQuotes {
         }
     }
 
-    static void add(ArrayList<String> quotes, String quote){
+    public static void add(ArrayList<String> quotes, String quote){
         try {
             FileWriter fw = new FileWriter("C:\\Users\\CL-1\\Desktop\\JavaRefresher\\JavaRefresher\\memorableQuotes\\quotes.txt", true);
             fw.append("\n"+ quote);
@@ -125,12 +118,12 @@ public class memorableQuotes {
             e.printStackTrace();
         }
     }
+
+
     // Database Management Function:
     // Add, Delete, Modify
-    
     // For database commands [add | modify | delete]
-    static void database(ArrayList<String> quotes, String name){
-        QuotesFormatter quoteFormatter = new QuotesFormatter();
+    public static void database(ArrayList<String> quotes, String name){
         Scanner input = new Scanner(System.in);
         if("add".equals(name)){
             System.out.print("Quote: ");
@@ -139,8 +132,9 @@ public class memorableQuotes {
             String author = input.nextLine();
             System.out.print("Category: ");
             String category = input.nextLine();
-            String formatQuote = quoteFormatter.formattedQuotes(quote, author, category);
+            String formatQuote = quoteFormatter.formattedQuotes(quote, author, category, 0);
             add(quotes, formatQuote);
+            System.out.println("Quote Added");
         }else if("modify".equals(name)){
             // todo
         }else if("delete".equals(name)){
@@ -148,7 +142,6 @@ public class memorableQuotes {
             int index = input.nextInt();
         }
     }
-    // 
 
     // Main Program
     public static void main(String[] args) {
