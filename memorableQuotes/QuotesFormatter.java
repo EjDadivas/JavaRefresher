@@ -1,8 +1,11 @@
 package memorableQuotes;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.BufferedWriter;
@@ -19,15 +22,35 @@ public class QuotesFormatter {
                 return(format);
         }
 
+        // public int incrementCount(String quote) {
+        //         if (!count.containsKey(quote)) {
+        //             count.put(quote, 0);
+        //         }
+        //         count.put(quote, count.get(quote) + 1);
+        //         int counter = count.get(quote);
+        //         return(counter);
+        // }   
         public int incrementCount(String quote) {
-                if (!count.containsKey(quote)) {
-                    count.put(quote, 0);
-                }
-                count.put(quote, count.get(quote) + 1);
-                int counter = count.get(quote);
-                return(counter);
-        }   
-        
+            if (!count.containsKey(quote)) {
+                count.put(quote, 0);
+            }
+            count.put(quote, count.get(quote) + 1);
+            int counter = count.get(quote);
+            String[] split=quote.split("@");
+            for(String i : split){
+            }
+            try {
+                List<String> allLines = Files.readAllLines(Paths.get(FILE_NAME));
+                allLines.set(index-1, newLine);
+                System.out.println(allLines.get(index-1));
+                Files.write(Paths.get(fileName), allLines);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+    
+            
+            return(counter);
+    }   
         private void updateCountInFile(String quote, int newCount) {
                 try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
                     String line;

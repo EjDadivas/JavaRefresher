@@ -3,16 +3,16 @@ import classes.Counter;
 
 public class CounterMain {
     public static void main(String[] args) {
-        
-        
-    Counter counter1 = new Counter();
-    Counter counter2 = new Counter();
 
-    counter1.value += 2;
-    counter2.value += 1;
+    Counter counter1 = new Counter("First counter");
+    Counter counter2 = new Counter("Second counter");
 
-    System.out.println(counter1.value);
-    System.out.println(counter2.value);
+    
+    counter1.increment();
+    counter1.increment();
+    counter2.increment();
+    counter1.report();
+    counter2.report();
 
     }
 }

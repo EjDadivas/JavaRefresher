@@ -1,20 +1,13 @@
 package memorableQuotes;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.HashMap;
-import java.util.Map;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.FileWriter;
-import memorableQuotes.QuotesFormatter;
+
 
 
 public class memorableQuotes {
@@ -47,7 +40,6 @@ public class memorableQuotes {
         int counter = quoteFormatter.incrementCount(quote);
         String[] split = quote.split("@");
         System.out.println('"'+ split[0] +'"' + " (" + counter + ")" + "\n -- " + split[1]);
-
     }
 
     // Searches for both reference and content
@@ -55,7 +47,6 @@ public class memorableQuotes {
         int count = 0;
         for(String i : quotes){
             String[] split = i.split("@");
-            
             // csearch command: gives content
             if(type == "content"){
                 if(split[0].contains(name)){
@@ -82,7 +73,6 @@ public class memorableQuotes {
             System.out.println("Found " + count + " results");
         } else {
             System.out.println("No results found");
-
         }
     }
     // displays random quotes with delay and max quotes
@@ -98,7 +88,6 @@ public class memorableQuotes {
                     max = Integer.parseInt(splitCommand[1]);
                 } 
             }
-
         while(x < max){
             String quote = getRandomQuote(quotes);
             
@@ -112,7 +101,7 @@ public class memorableQuotes {
             x++;
         }
     }
-
+    // db add command
     public static void add(ArrayList<String> quotes, String quote){
         try {
             FileWriter fw = new FileWriter(fileName, true);
@@ -122,7 +111,7 @@ public class memorableQuotes {
             e.printStackTrace();
         }
     }
-
+    // db delete command
     public static void deleteLine(ArrayList<String> quotes, int index) {
         try {
             List<String> allLines = Files.readAllLines(Paths.get(fileName));
@@ -132,6 +121,7 @@ public class memorableQuotes {
             e.printStackTrace();
         }
     }
+    // db modify command
     public static void modify(ArrayList<String> quotes, int index, String newLine) {
         try {
             List<String> allLines = Files.readAllLines(Paths.get(fileName));

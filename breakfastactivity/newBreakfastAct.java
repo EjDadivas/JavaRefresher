@@ -5,18 +5,45 @@ import java.util.Scanner;
 
 public class newBreakfastAct {
 
+    //For the commands keysearch and keysearch
+    static void search(String type, ArrayList<String> arrays, String name){
+        String titleResults = "";
+        String descriptionResults = "";
+        int count = 0;
+        for(String i : arrays) {
+            String[] splitArr = i.split(" : ");
+            if(type == "key"){
+            if(name.equals(splitArr[0])){
+                count++;
+                titleResults = "Found title: " + splitArr[0] + " | Results: " + count;
+                        if(count != 0){
+                            System.out.println(titleResults);
+                        } else {
+                            System.out.println("No title Found");
+                        }
+                    }
+                    
+                }
+            else if(type == "description"){
+            if(name.equals(splitArr[1])){
+                count++;
+                descriptionResults = "Found description: " + splitArr[1] + " | Results: " + count;
+                    if(count != 0){
+                        System.out.println(descriptionResults);
+                    } else {
+                        System.out.println("No description Found");
+                    }
+                }
+            } else {
+                System.out.println("Invalid Command");
+            }
+        }
+    }
     public static void main(String[] args) {
     while(true){
         Scanner sc = new Scanner(System.in);  // Create a Scanner object
         System.out.println("[display/sort asc/sort desc/count/keysearch/dsearch/quit]");
         String parameter = sc.nextLine();
-        String title = "";
-        String description = "";
-        String titleResults = "";
-        String descriptionResults = "";
-
-        int titleCount = 0;
-        int descriptionCount = 0;
 
         ArrayList<String>arrays = new ArrayList<String>();
         arrays.add("Orange : Fruit");
@@ -24,54 +51,42 @@ public class newBreakfastAct {
         arrays.add("Tomato : Vegetable");
         arrays.add("Tomato : Soup");
 
-        for(String i : arrays) {
-            // System.out.println(i);
-            String[] splitArr = i.split(" : ");
-
-            if(title.equals(splitArr[0])){
-                titleCount++;
-                titleResults = "Found title: " + splitArr[0] + "| Results: " + titleCount;
-            }
-            if(description.equals(splitArr[1])){
-                descriptionCount++;
-                descriptionResults = "Found description: " + splitArr[1] + "| Results: " + descriptionCount;
-            }
-            
-        }
         
+        //display the whole list
         if("display".equalsIgnoreCase(parameter)){
-            System.out.println("Display " + arrays);
+            for(String items : arrays){
+                System.out.println(items);
+            }
+        // displays list in ascending order
         } else if("sort asc".equalsIgnoreCase(parameter)){
             Collections.sort(arrays);
-            System.out.println("Sort: " + arrays);
+            for(String items : arrays){
+                System.out.println(items);
+            }
+        // displays list in descending order
         } else if("sort desc".equalsIgnoreCase(parameter)){
             Collections.reverse(arrays);
-            System.out.println("Sort Des: " + arrays);
+            for(String items : arrays){
+                System.out.println(items);
+            }
+        // displays number of items in the list
         } else if("count".equalsIgnoreCase(parameter)){
             System.out.println("Size: " + arrays.size());
-        } else if(parameter.startsWith("search ")){
-            title = parameter.substring("search ".length());
-            if(titleCount != 0){
-                System.out.println(titleResults);
-            } else {
-                System.out.println("No title Found");
-            }
+        // searches for title
+        } else if(parameter.startsWith("keysearch ")){
+            String title = parameter.substring("keysearch ".length());
+            search("key", arrays, title);
+        // searches for description
         } else if(parameter.startsWith("dsearch ")){
-            description = parameter.substring("dsearch ".length());
-            if(descriptionCount != 0){
-                System.out.println(descriptionResults);
-            } else {
-                System.out.println("No description Found");
-            }
+            String description = parameter.substring("dsearch ".length());
+            search("description", arrays, description);
+        // if u quit u quit
         } else if("quit".equalsIgnoreCase(parameter)){
             break;
         } else {
             System.out.println("Invalid Command!");
         }
             
-
-
-       
         }
        
     }
