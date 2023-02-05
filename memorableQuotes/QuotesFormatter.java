@@ -1,83 +1,44 @@
 package memorableQuotes;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-
 
 public class QuotesFormatter {
-        // for the quotes counter
-        static Map<String, Integer> count = new HashMap<>();
-        private static final String FILE_NAME = "C:\\Users\\CL-1\\Desktop\\JavaRefresher\\JavaRefresher\\memorableQuotes\\quotes.txt";
+    // for the quotes counter
+    private static Map<String, Integer> count = new HashMap<>();
+    private static final String FILE_NAME = "C:\\Users\\ASUS\\Desktop\\Self-Study\\JavaRefresher\\memorableQuotes\\quotes.txt";
 
-        public String formattedQuotes(String quote, String author, String category, int count){
-                String format = quote+"@"+author+"@"+category+"@"+count;
-                return(format);
+    public String formattedQuotes(String quote, String author, String category, int counter) {
+        String format = quote + "@" + author + "@" + category + "@" + counter;
+        return (format);
+    }
+
+    public void incrementCount(String quote, int index, ArrayList<String> quotes) {
+        String[] split = quote.split("@");
+        String newLine = "";
+        if (!count.containsKey(quote)) {
+            count.put(quote, Integer.parseInt(split[3]));
+        }
+        count.put(quote, count.get(quote) + 1);
+        int counter = count.get(quote);
+
+        // change this format
+        newLine = formattedQuotes(split[0], split[1], split[2], counter);
+
+        try {
+            List<String> allLines = Files.readAllLines(Paths.get(FILE_NAME));
+            allLines.set(index, newLine);
+            Files.write(Paths.get(FILE_NAME), allLines);
+
+        } catch (IOException e) {
+            System.out.println("error at " + index);
+            e.printStackTrace();
         }
 
-        // public int incrementCount(String quote) {
-        //         if (!count.containsKey(quote)) {
-        //             count.put(quote, 0);
-        //         }
-        //         count.put(quote, count.get(quote) + 1);
-        //         int counter = count.get(quote);
-        //         return(counter);
-        // }   
-        public int incrementCount(String quote) {
-            if (!count.containsKey(quote)) {
-                count.put(quote, 0);
-            }
-            count.put(quote, count.get(quote) + 1);
-            int counter = count.get(quote);
-            String[] split=quote.split("@");
-            for(String i : split){
-            }
-            try {
-                List<String> allLines = Files.readAllLines(Paths.get(FILE_NAME));
-                allLines.set(index-1, newLine);
-                System.out.println(allLines.get(index-1));
-                Files.write(Paths.get(fileName), allLines);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-    
-            
-            return(counter);
-    }   
-        private void updateCountInFile(String quote, int newCount) {
-                try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
-                    String line;
-                    StringBuilder sb = new StringBuilder();
-                    boolean quoteFound = false;
-                    while ((line = reader.readLine()) != null) {
-                        String[] parts = line.split("@");
-                        if (parts[0].equals(quote)) {
-                            sb.append(quote + "@" + parts[1] + "@" + parts[2] + "@" + newCount + "\n");
-                            quoteFound = true;
-                        } else {
-                            sb.append(line + "\n");
-                        }
-                    }
-                    if (!quoteFound) {
-                        sb.append(quote + "@" + "Unknown" + "@" + "Unknown" + "@" + newCount + "\n");
-                    }
-                    try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
-                        writer.write(sb.toString());
-                    }
-                } catch (IOException e) {
-                    System.out.println("Error reading/writing the quotes file: " + e.getMessage());
-                }
-            }
-        }
-
-
-        
-        
-
+    }
+}

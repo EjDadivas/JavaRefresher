@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch memorableQuotes",
+            "request": "launch",
+            "mainClass": "memorableQuotes.memorableQuotes",
+            "projectName": "JavaRefresher_8e5564d2"
+        },
+        {
+            "type": "java",
             "name": "Launch CounterMain",
             "request": "launch",
             "mainClass": "classes.CounterMain",
