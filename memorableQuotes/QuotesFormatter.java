@@ -11,7 +11,9 @@ import java.nio.file.Paths;
 public class QuotesFormatter {
     // for the quotes counter
     private static Map<String, Integer> count = new HashMap<>();
-    private static final String FILE_NAME = "C:\\Users\\ASUS\\Desktop\\Self-Study\\JavaRefresher\\memorableQuotes\\quotes.txt";
+    // private static final String FILE_NAME = "C:\\Users\\ASUS\\Desktop\\Self-Study\\JavaRefresher\\memorableQuotes\\quotes.txt";
+    private static final String FILE_NAME = "C:\\Users\\CL-1\\Desktop\\JavaRefresher\\JavaRefresher\\memorableQuotes\\quotes.txt";
+
 
     public String formattedQuotes(String quote, String author, String category, int counter) {
         String format = quote + "@" + author + "@" + category + "@" + counter;

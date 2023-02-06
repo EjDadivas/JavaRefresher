@@ -10,7 +10,9 @@ import java.util.List;
 import java.io.FileWriter;
 
 public class memorableQuotes {
-    private static String fileName = "C:\\Users\\ASUS\\Desktop\\Self-Study\\JavaRefresher\\memorableQuotes\\quotes.txt";
+    // private static String fileName = "C:\\Users\\ASUS\\Desktop\\Self-Study\\JavaRefresher\\memorableQuotes\\quotes.txt";
+    private static String fileName = "C:\\Users\\CL-1\\Desktop\\JavaRefresher\\JavaRefresher\\memorableQuotes\\quotes.txt";
+
     private static QuotesFormatter quoteFormatter = new QuotesFormatter();
 
     // 2. Adds quotes inside ArrayList 11. read files fromm a list
