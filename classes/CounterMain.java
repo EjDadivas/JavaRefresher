@@ -1,5 +1,5 @@
 package classes;
-import classes.Counter;
+
 
 public class CounterMain {
     public static void main(String[] args) {
