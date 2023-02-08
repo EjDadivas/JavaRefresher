@@ -22,7 +22,7 @@ public class MemorableQuotesMain {
             // quotesList.removeQuote(test1);
 
             // quote by index
-            // MemorableQuote x = quotesList.getQuoteByIndex(1);
+            MemorableQuote x = quotesList.getQuoteByIndex(1);
             // x.printQuote();
             quotesList.writeToFile(filename);
 
@@ -113,6 +113,11 @@ public class MemorableQuotesMain {
                         }
                     }
                     displayQuotesList.execute();
+
+                } else if ("delete".equals(parameter)) {
+                    System.out.println("Enter the index u want to delete");
+                    int index = sc.nextInt();
+                    quotesList.removeQuote(quotesList.getQuoteByIndex(index - 1));
 
                 } else if ("quit".equals(parameter)) {
                     break;

@@ -19,7 +19,7 @@ public class MemorableQuotesDatabase {
 
     public MemorableQuotesDatabase() {
 
-        System.out.println(readFromFile(filename));
+        readFromFile(filename);
 
     }
 
@@ -90,7 +90,6 @@ public class MemorableQuotesDatabase {
             for (String line : allLines) {
                 String[] split = line.split("@");
                 quotes.add(new MemorableQuote(split[0], split[1], split[2], Integer.parseInt(split[3])));
-
                 System.out.println(line);
             }
         } catch (IOException e) {

@@ -1,15 +1,13 @@
 package coffeeShop;
 
-public class Beverage {
+public class Pastry {
     private String productName;
     private int price;
-    private String size;
     private String type;
 
-    public Beverage(String productName, int price, String size, String type) {
+    public Pastry(String productName, int price, String type) {
         this.productName = productName;
         this.price = price;
-        this.size = size;
         this.type = type;
     }
 
@@ -27,14 +25,6 @@ public class Beverage {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
     }
 
     public String getType() {
