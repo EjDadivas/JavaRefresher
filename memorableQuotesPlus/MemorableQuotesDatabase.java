@@ -11,7 +11,10 @@ import java.util.Random;
 
 public class MemorableQuotesDatabase {
     private ArrayList<MemorableQuote> quotes;
-    private String filename = "C:\\Users\\CL-1\\Desktop\\JavaRefresher\\JavaRefresher\\memorableQuotesPlus\\quotes.txt";
+    // private String filename =
+    // "C:\\Users\\CL-1\\Desktop\\JavaRefresher\\JavaRefresher\\memorableQuotesPlus\\quotes.txt";
+
+    private String filename = "C:\\Users\\ASUS\\Desktop\\Self-Study\\JavaRefresher\\memorableQuotesPlus\\quotes.txt";
 
     public void setQuotes(ArrayList<MemorableQuote> quotes) {
         this.quotes = quotes;

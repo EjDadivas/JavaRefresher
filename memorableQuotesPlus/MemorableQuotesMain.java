@@ -8,8 +8,9 @@ public class MemorableQuotesMain {
     public static void main(String[] args) {
         MemorableQuotesDatabase quotesList = new MemorableQuotesDatabase();
         MemorableQuotesDisplayShow displayQuotesList = new MemorableQuotesDisplayShow(quotesList);
-        String filename = "C:\\Users\\CL-1\\Desktop\\JavaRefresher\\JavaRefresher\\memorableQuotesPlus\\quotes.txt";
-
+        // String filename =
+        // "C:\\Users\\CL-1\\Desktop\\JavaRefresher\\JavaRefresher\\memorableQuotesPlus\\quotes.txt";
+        String filename = "C:\\Users\\ASUS\\Desktop\\Self-Study\\JavaRefresher\\memorableQuotesPlus\\quotes.txt";
         System.out.println(quotesList);
         while (true) {
             Scanner sc = new Scanner(System.in);
@@ -22,12 +23,9 @@ public class MemorableQuotesMain {
             // quotesList.removeQuote(test1);
 
             // quote by index
-            MemorableQuote x = quotesList.getQuoteByIndex(1);
+            // MemorableQuote x = quotesList.getQuoteByIndex(1);
             // x.printQuote();
             quotesList.writeToFile(filename);
-
-            // quote count
-            // System.out.println(quotesList.getQuoteCount());
 
             if (quotesList.getQuoteCount() != 0) {
                 // ALL
@@ -36,18 +34,15 @@ public class MemorableQuotesMain {
                     for (MemorableQuote i : quotesList.getAllQuotes()) {
                         i.printQuote();
                         quotesList.writeToFile(filename);
-                        quotesList.writeToFile(filename);
                     }
                 } else if (parameter.startsWith("all category=")) {
                     String name = parameter.substring("all category=".length());
                     // do the search here
                     ArrayList<MemorableQuote> categoryList = quotesList.searchCategory(name);
-
                     categoryList.retainAll(quotesList.getAllQuotes());
 
                     for (MemorableQuote i : categoryList) {
                         i.printQuote();
-                        quotesList.writeToFile(filename);
                         quotesList.writeToFile(filename);
                     }
                     // RANDOM
@@ -95,7 +90,6 @@ public class MemorableQuotesMain {
                             quotesList.writeToFile(filename);
                         }
                     }
-
                     // DISPLAY
                 } else if ("display".equals(parameter)) {
                     displayQuotesList.execute();
@@ -119,6 +113,18 @@ public class MemorableQuotesMain {
                     int index = sc.nextInt();
                     quotesList.removeQuote(quotesList.getQuoteByIndex(index - 1));
 
+                } else if ("add".equals(parameter)) {
+                    System.out.print("Quote: ");
+                    String newquote = sc.nextLine();
+
+                    System.out.print("Author: ");
+                    String newauthor = sc.nextLine();
+
+                    System.out.print("Category: ");
+                    String newcategory = sc.nextLine();
+                    MemorableQuote addNewQuote = new MemorableQuote(newquote, newauthor, newcategory, 0);
+                    quotesList.addQuote(addNewQuote);
+                    System.out.println("Quote Added");
                 } else if ("quit".equals(parameter)) {
                     break;
                 } else {

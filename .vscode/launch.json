@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch StoreMain",
+            "request": "launch",
+            "mainClass": "product.StoreMain",
+            "projectName": "JavaRefresher_8e5564d2"
+        },
+        {
+            "type": "java",
+            "name": "Launch MemorableQuotesMain",
+            "request": "launch",
+            "mainClass": "memorableQuotesPlus.MemorableQuotesMain",
+            "projectName": "JavaRefresher_8e5564d2"
+        },
+        {
+            "type": "java",
+            "name": "Launch MemorableQuotesMain",
+            "request": "launch",
+            "mainClass": "MemorableQuotesPlusPlus.MemorableQuotesMain",
+            "projectName": "JavaRefresher_8e5564d2"
+        },
+        {
+            "type": "java",
             "name": "Launch CoffeeShop",
             "request": "launch",
             "mainClass": "coffeeShop.CoffeeShop",
